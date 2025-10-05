@@ -55,7 +55,7 @@ Check out the repository [here](https://github.com/YOUR_USERNAME/gamify).
 
 - **[LinkedIn](https://www.linkedin.com/in/yared-zewde/)**  
 - **[Portfolio Website](https://YOUR_PORTFOLIO_LINK)**  
-- **Email:** [your_email@example.com](mailto:yaredzbeth@gmail.com)
+- **Email:** [yaredzbeth@gmail.com](mailto:yaredzbeth@gmail.com)
 
 ---
 

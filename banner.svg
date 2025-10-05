@@ -1,42 +1,732 @@
-<svg width="1600" height="400" xmlns="http://www.w3.org/2000/svg">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Banner - Yared Zenebe</title>
   <style>
-    .title { font: bold 48px "Segoe UI", Arial, sans-serif; fill: #fff; }
-    .subtitle { font: 28px "Segoe UI", Arial, sans-serif; fill: #49eaff; }
-    .small { font: 20px "Segoe UI", Arial, sans-serif; fill: #b4e0fa; }
-    .badge-bg { fill: #111; stroke: #49eaff; stroke-width: 2; rx: 10; }
-    .icon-label { font: bold 16px "Segoe UI", Arial, sans-serif; fill: #fff; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #000;
+      overflow: hidden;
+    }
+
+    .banner {
+      width: 1280px;
+      height: 320px;
+      position: relative;
+      background: linear-gradient(135deg, #0a0f1e 0%, #1a1f35 50%, #0f172a 100%);
+      overflow: hidden;
+    }
+
+    /* Hexagonal grid background */
+    .hex-grid {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0.03;
+      background-image: 
+        linear-gradient(30deg, transparent 48%, #ffffff 48%, #ffffff 52%, transparent 52%),
+        linear-gradient(150deg, transparent 48%, #ffffff 48%, #ffffff 52%, transparent 52%),
+        linear-gradient(90deg, transparent 48%, #ffffff 48%, #ffffff 52%, transparent 52%);
+      background-size: 60px 35px;
+    }
+
+    /* Floating particles */
+    .particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: #38bdf8;
+      border-radius: 50%;
+      opacity: 0.4;
+      animation: float 20s infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0); }
+      25% { transform: translate(10px, -10px); }
+      50% { transform: translate(-5px, -20px); }
+      75% { transform: translate(-10px, -10px); }
+    }
+
+    /* Matrix-style falling binary */
+    .binary-stream {
+      position: absolute;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      color: #38bdf8;
+      opacity: 0.08;
+      animation: fall linear infinite;
+      white-space: nowrap;
+    }
+
+    @keyframes fall {
+      from { transform: translateY(-100%); }
+      to { transform: translateY(320px); }
+    }
+
+    /* Geometric shapes */
+    .geo-shape {
+      position: absolute;
+      opacity: 0.3;
+    }
+
+    .circle-pulse {
+      width: 120px;
+      height: 120px;
+      border: 2px solid #38bdf8;
+      border-radius: 50%;
+      position: absolute;
+      left: 60px;
+      top: 20px;
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    .circle-pulse-inner {
+      width: 90px;
+      height: 90px;
+      border: 1px solid #38bdf8;
+      border-radius: 50%;
+      position: absolute;
+      left: 75px;
+      top: 35px;
+      opacity: 0.5;
+      animation: pulse 3s ease-in-out infinite 0.3s;
+    }
+
+    @keyframes pulse {
+      0%, 100% { 
+        transform: scale(1);
+        opacity: 0.3;
+      }
+      50% { 
+        transform: scale(1.05);
+        opacity: 0.5;
+      }
+    }
+
+    /* Rotating square */
+    .rotate-square {
+      width: 80px;
+      height: 80px;
+      border: 2px solid #c084fc;
+      position: absolute;
+      right: 150px;
+      top: 40px;
+      animation: rotate 20s linear infinite;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Neural network nodes */
+    .node {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: #38bdf8;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #38bdf8;
+      animation: glow 2s ease-in-out infinite;
+    }
+
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 10px #38bdf8; }
+      50% { box-shadow: 0 0 20px #38bdf8, 0 0 30px #38bdf8; }
+    }
+
+    .line {
+      position: absolute;
+      height: 2px;
+      background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc);
+      opacity: 0.5;
+      animation: shimmer 3s linear infinite;
+    }
+
+    @keyframes shimmer {
+      0% { opacity: 0.3; }
+      50% { opacity: 0.7; }
+      100% { opacity: 0.3; }
+    }
+
+    /* Data pulse traveling */
+    .data-pulse {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #fff;
+      animation: travel 4s linear infinite;
+    }
+
+    @keyframes travel {
+      0% { left: 120px; top: 80px; opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { left: 1100px; top: 100px; opacity: 0; }
+    }
+
+    /* Tech icons */
+    .tech-icon {
+      position: absolute;
+      opacity: 0.15;
+      animation: floatIcon 6s ease-in-out infinite;
+    }
+
+    @keyframes floatIcon {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Code symbols floating */
+    .float-code {
+      position: absolute;
+      font-family: 'Courier New', monospace;
+      color: #fff;
+      opacity: 0.1;
+      animation: floatUp 15s linear infinite;
+    }
+
+    @keyframes floatUp {
+      from { 
+        transform: translateY(0);
+        opacity: 0.1;
+      }
+      to { 
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+    }
+
+    /* Main content */
+    .content {
+      position: absolute;
+      left: 60px;
+      top: 160px;
+      z-index: 10;
+    }
+
+    .accent-bar {
+      width: 120px;
+      height: 4px;
+      background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc);
+      margin-bottom: 20px;
+      animation: expandBar 2s ease-out;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+    }
+
+    @keyframes expandBar {
+      from { width: 0; }
+      to { width: 120px; }
+    }
+
+    .name {
+      font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+      font-size: 56px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -1px;
+      text-shadow: 0 0 20px rgba(56, 189, 248, 0.5), 0 0 40px rgba(56, 189, 248, 0.3);
+      margin-bottom: 10px;
+      animation: fadeIn 1s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .tagline {
+      font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+      font-size: 22px;
+      color: #94a3b8;
+      letter-spacing: 0.5px;
+      margin-bottom: 15px;
+      animation: fadeIn 1s ease-out 0.3s backwards;
+    }
+
+    /* Tech skill boxes */
+    .skill-boxes {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 15px;
+      animation: fadeIn 1s ease-out 0.5s backwards;
+      flex-wrap: wrap;
+    }
+
+    .skill-box {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      animation: skillSlide 0.6s ease-out backwards;
+      transition: all 0.3s ease;
+    }
+
+    .skill-box:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.1);
+    }
+
+    .skill-box svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .skill-box.python {
+      background: #3776ab;
+      color: #ffffff;
+      animation-delay: 0.6s;
+    }
+
+    .skill-box.java {
+      background: #007396;
+      color: #ffffff;
+      animation-delay: 0.65s;
+    }
+
+    .skill-box.cpp {
+      background: #00599c;
+      color: #ffffff;
+      animation-delay: 0.7s;
+    }
+
+    .skill-box.js {
+      background: #f7df1e;
+      color: #000000;
+      animation-delay: 0.75s;
+    }
+
+    .skill-box.react {
+      background: #61dafb;
+      color: #000000;
+      animation-delay: 0.8s;
+    }
+
+    .skill-box.tailwind {
+      background: #06b6d4;
+      color: #ffffff;
+      animation-delay: 0.85s;
+    }
+
+    .skill-box.django {
+      background: #092e20;
+      color: #ffffff;
+      animation-delay: 0.9s;
+    }
+
+    .skill-box.multisim {
+      background: #ff6b6b;
+      color: #ffffff;
+      animation-delay: 0.95s;
+    }
+
+    .skill-box.matlab {
+      background: #0076a8;
+      color: #ffffff;
+      animation-delay: 1s;
+    }
+
+    @keyframes skillSlide {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Tech tags */
+    .tags {
+      display: flex;
+      gap: 10px;
+      animation: fadeIn 1s ease-out 0.6s backwards;
+    }
+
+    .tag {
+      padding: 8px 20px;
+      border-radius: 14px;
+      font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      animation: tagPop 0.5s ease-out backwards;
+    }
+
+    .tag:nth-child(1) {
+      background: rgba(56, 189, 248, 0.2);
+      color: #38bdf8;
+      animation-delay: 0.8s;
+    }
+
+    .tag:nth-child(2) {
+      background: rgba(34, 197, 94, 0.2);
+      color: #22c55e;
+      animation-delay: 1s;
+    }
+
+    .tag:nth-child(3) {
+      background: rgba(192, 132, 252, 0.2);
+      color: #c084fc;
+      animation-delay: 1.2s;
+    }
+
+    @keyframes tagPop {
+      from { 
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to { 
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Initials watermark */
+    .watermark {
+      position: absolute;
+      right: 80px;
+      bottom: 40px;
+      font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+      font-size: 120px;
+      font-weight: 900;
+      color: #fff;
+      opacity: 0.02;
+      letter-spacing: -5px;
+      z-index: 1;
+    }
+
+    /* Corner accents */
+    .corner-accent {
+      position: absolute;
+      width: 40px;
+      height: 3px;
+      background: #38bdf8;
+      opacity: 0.5;
+    }
+
+    .corner-accent.top-left {
+      top: 0;
+      left: 0;
+    }
+
+    .corner-accent.top-left-v {
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 40px;
+    }
+
+    .corner-accent.bottom-right {
+      bottom: 0;
+      right: 0;
+      background: #c084fc;
+    }
+
+    .corner-accent.bottom-right-v {
+      bottom: 0;
+      right: 0;
+      width: 3px;
+      height: 40px;
+      background: #c084fc;
+    }
+
+    /* Terminal window */
+    .terminal {
+      position: absolute;
+      right: 80px;
+      top: 60px;
+      width: 200px;
+      height: 100px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid #38bdf8;
+      border-radius: 6px;
+      padding: 10px;
+      font-family: 'Courier New', monospace;
+      font-size: 10px;
+      color: #22c55e;
+      opacity: 0.3;
+      overflow: hidden;
+    }
+
+    .terminal-line {
+      animation: typewriter 4s steps(40) infinite;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    @keyframes typewriter {
+      0%, 100% { width: 0; }
+      50%, 90% { width: 100%; }
+    }
+
+    /* Tech skill icons */
+    .skill-icon {
+      position: absolute;
+      opacity: 0.25;
+      animation: floatIcon 6s ease-in-out infinite;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .skill-icon:hover {
+      opacity: 0.6;
+      transform: scale(1.2);
+    }
+
+    .skill-icon svg {
+      filter: drop-shadow(0 0 8px currentColor);
+    }
   </style>
-  <rect width="100%" height="100%" fill="#000"/>
-  <!-- Name and tagline -->
-  <text x="80" y="110" class="title">Yared Zenebe</text>
-  <text x="80" y="170" class="subtitle">Computer Engineering Student | Web &amp; ML Enthusiast</text>
-  <!-- Tech icons row -->
-  <g>
-    <!-- Python -->
-    <rect x="80" y="240" width="90" height="50" class="badge-bg"/>
-    <text x="125" y="272" class="icon-label" text-anchor="middle">🐍 Python</text>
-    <!-- Java -->
-    <rect x="190" y="240" width="80" height="50" class="badge-bg"/>
-    <text x="230" y="272" class="icon-label" text-anchor="middle">☕ Java</text>
+</head>
+<body>
+  <div class="banner">
+    <!-- Background elements -->
+    <div class="hex-grid"></div>
+    <div class="watermark">YZ</div>
+    
+    <!-- Corner accents -->
+    <div class="corner-accent top-left"></div>
+    <div class="corner-accent top-left-v"></div>
+    <div class="corner-accent bottom-right"></div>
+    <div class="corner-accent bottom-right-v"></div>
+
+    <!-- Geometric shapes -->
+    <div class="circle-pulse"></div>
+    <div class="circle-pulse-inner"></div>
+    <div class="rotate-square"></div>
+
+    <!-- Neural network nodes -->
+    <div class="node" style="left: 120px; top: 80px;"></div>
+    <div class="node" style="left: 400px; top: 120px;"></div>
+    <div class="node" style="left: 650px; top: 90px;"></div>
+    <div class="node" style="left: 900px; top: 140px;"></div>
+    <div class="node" style="left: 1100px; top: 100px;"></div>
+
+    <!-- Connecting lines -->
+    <div class="line" style="left: 120px; top: 80px; width: 280px; transform: rotate(8deg);"></div>
+    <div class="line" style="left: 400px; top: 120px; width: 250px; transform: rotate(-7deg);"></div>
+    <div class="line" style="left: 650px; top: 90px; width: 250px; transform: rotate(12deg);"></div>
+    <div class="line" style="left: 900px; top: 140px; width: 200px; transform: rotate(-10deg);"></div>
+
+    <!-- Data pulse -->
+    <div class="data-pulse"></div>
+
+    <!-- Terminal window -->
+    <div class="terminal">
+      <div class="terminal-line">&gt; npm run build</div>
+      <div class="terminal-line" style="animation-delay: 0.5s;">&gt; Compiling...</div>
+      <div class="terminal-line" style="animation-delay: 1s;">&gt; Success! ✓</div>
+    </div>
+
+    <!-- Tech Skill Icons -->
     <!-- React -->
-    <rect x="290" y="240" width="100" height="50" class="badge-bg"/>
-    <text x="340" y="272" class="icon-label" text-anchor="middle">⚛️ React</text>
-    <!-- Django -->
-    <rect x="410" y="240" width="110" height="50" class="badge-bg"/>
-    <text x="465" y="272" class="icon-label" text-anchor="middle">🌱 Django</text>
-    <!-- ML -->
-    <rect x="540" y="240" width="100" height="50" class="badge-bg"/>
-    <text x="590" y="272" class="icon-label" text-anchor="middle">🧠 ML</text>
-  </g>
-  <!-- Fun fact/hobby -->
-  <g>
-    <text x="80" y="335" class="small">🏃‍♂️ 5K finisher &amp; hiking fan in the UAE</text>
-  </g>
-  <!-- Neon accents -->
-  <circle cx="1200" cy="120" r="42" fill="#49eaff" opacity="0.12"/>
-  <rect x="1100" y="260" width="90" height="90" fill="#49eaff" opacity="0.08" rx="22"/>
-  <circle cx="1550" cy="200" r="14" fill="#49eaff" opacity="0.15"/>
-  <circle cx="900" cy="360" r="6" fill="#fff" opacity="0.22"/>
-  <rect x="750" y="90" width="40" height="40" fill="#49eaff" opacity="0.12" rx="8"/>
-  <rect x="1300" y="40" width="50" height="50" fill="#111" opacity="0.13" rx="14"/>
-</svg>
+    <div class="skill-icon" style="left: 250px; top: 45px; color: #61dafb; animation-delay: 0s;">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="2" fill="currentColor"/>
+        <ellipse cx="12" cy="12" rx="10" ry="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <ellipse cx="12" cy="12" rx="10" ry="4" stroke="currentColor" stroke-width="1.5" fill="none" transform="rotate(60 12 12)"/>
+        <ellipse cx="12" cy="12" rx="10" ry="4" stroke="currentColor" stroke-width="1.5" fill="none" transform="rotate(120 12 12)"/>
+      </svg>
+    </div>
+
+    <!-- Python -->
+    <div class="skill-icon" style="left: 450px; top: 210px; color: #3776ab; animation-delay: 1s;">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M9.585 11.692h4.328s2.432.039 2.432-2.35V5.391S16.714 3 11.936 3C7.362 3 7.647 3 7.647 3L7.608 5.8h4.43v.632H6.647s-3.426-.365-3.426 4.838 0 5.006 0 5.006h2.01v-2.82s-.134-3.074 3.354-3.074zm-.056-5.74a.816.816 0 1 1 0-1.631.816.816 0 0 1 0 1.631z"/>
+        <path d="M14.415 12.308h-4.328s-2.432-.039-2.432 2.35v3.951S7.286 21 12.064 21c4.574 0 4.289 0 4.289 0l.039-2.8h-4.43v-.632h5.391s3.426.365 3.426-4.838 0-5.006 0-5.006h-2.01v2.82s.134 3.074-3.354 3.074zm.056 5.74a.816.816 0 1 1 0 1.631.816.816 0 0 1 0-1.631z"/>
+      </svg>
+    </div>
+
+    <!-- JavaScript -->
+    <div class="skill-icon" style="left: 720px; top: 190px; color: #f7df1e; animation-delay: 2s;">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+        <rect x="3" y="3" width="18" height="18" rx="2" fill="currentColor"/>
+        <path d="M13.5 16.5c0 1.1.9 2 2 2s2-.9 2-2v-6h-1.5v6c0 .3-.2.5-.5.5s-.5-.2-.5-.5v-6H13.5v6zM8.5 13c-.6 0-1 .4-1 1v2.5c0 .3-.2.5-.5.5s-.5-.2-.5-.5V14c0-1.1.9-2 2-2s2 .9 2 2c0 .6-.4 1-1 1h-1v1.5c0 .8.7 1.5 1.5 1.5s1.5-.7 1.5-1.5H10c0 .3-.2.5-.5.5s-.5-.2-.5-.5V14c0-.3.2-.5.5-.5h1c.3 0 .5-.2.5-.5s-.2-.5-.5-.5h-2z" fill="#000"/>
+      </svg>
+    </div>
+
+    <!-- Node.js -->
+    <div class="skill-icon" style="left: 850px; top: 50px; color: #339933; animation-delay: 3s;">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 1.85c-.27 0-.55.07-.78.2l-7.44 4.3c-.48.28-.78.8-.78 1.36v8.58c0 .56.3 1.08.78 1.36l1.95 1.12c.95.46 1.27.47 1.71.47 1.4 0 2.21-.85 2.21-2.33V8.44c0-.12-.1-.22-.22-.22h-.96c-.12 0-.21.1-.21.22v8.47c0 .66-.68 1.31-1.77.76l-2.05-1.18c-.1-.05-.15-.15-.15-.25V7.66c0-.1.06-.2.15-.25l7.44-4.3c.09-.05.21-.05.3 0l7.44 4.3c.1.05.15.15.15.25v8.58c0 .1-.06.2-.15.25l-7.44 4.3c-.09.05-.21.05-.3 0l-1.89-1.12c-.06-.03-.12-.05-.19-.03-.49.12-.59.15-1.08.34-.13.05-.32.12.04.35l2.46 1.45c.24.14.5.2.78.2s.54-.07.78-.2l7.44-4.3c.48-.28.78-.8.78-1.36V7.66c0-.56-.3-1.08-.78-1.36l-7.44-4.3c-.23-.13-.5-.2-.78-.2zm2.32 7.43c-2.27 0-2.73.98-2.73 1.81 0 .12.1.22.22.22h.99c.11 0 .2-.08.21-.19.15-.98.59-1.47 1.97-1.47.76 0 1.36.17 1.68.48.28.27.38.65.27 1.18-.14.71-.66 1.05-2.28 1.42-1.36.31-2.2.99-2.2 2.21 0 1.46 1.23 2.33 3.29 2.33 2.31 0 3.46-1.01 3.61-3.18 0-.06-.02-.12-.05-.17-.04-.05-.09-.08-.15-.08h-.99c-.1 0-.19.07-.21.17-.23 1.05-.8 1.39-2.21 1.39-1.63 0-1.82-.71-1.82-1.24 0-.56.22-.72 2.15-1.04 1.91-.31 2.33-.76 2.33-2.6 0-1.58-1.32-2.51-3.63-2.51z"/>
+      </svg>
+    </div>
+
+    <!-- TensorFlow / ML -->
+    <div class="skill-icon" style="left: 550px; top: 55px; color: #ff6f00; animation-delay: 1.5s;">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zm0 2.18L19.82 9 12 12.82 4.18 9 12 5.18zM12 14.5l-7-3.82v5.64L12 19.5l7-3.18v-5.64l-7 3.82z"/>
+      </svg>
+    </div>
+
+    <!-- Git -->
+    <div class="skill-icon" style="left: 350px; top: 150px; color: #f05032; animation-delay: 2.5s;">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M21.62 11.108l-8.731-8.729a1.292 1.292 0 0 0-1.823 0L9.257 4.19l2.299 2.3a1.532 1.532 0 0 1 1.939 1.95l2.214 2.217a1.53 1.53 0 0 1 1.583 2.531c-.599.6-1.566.6-2.166 0a1.536 1.536 0 0 1-.337-1.662l-2.074-2.063V14.9c.146.071.284.169.407.29.6.6.6 1.566 0 2.165-.599.6-1.566.6-2.165 0a1.536 1.536 0 0 1 0-2.164 1.532 1.532 0 0 1 .449-.303V9.415c-.165-.08-.323-.187-.449-.313a1.535 1.535 0 0 1-.338-1.65L7.26 5.15l-4.879 4.88a1.29 1.29 0 0 0 0 1.821l8.73 8.729a1.286 1.286 0 0 0 1.821 0l8.69-8.689a1.284 1.284 0 0 0 0-1.821"/>
+      </svg>
+    </div>
+
+    <!-- Docker -->
+    <div class="skill-icon" style="left: 980px; top: 180px; color: #2496ed; animation-delay: 3.5s;">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M13.98 11.08h2.12a.19.19 0 0 0 .19-.19V9.01a.19.19 0 0 0-.19-.19h-2.12a.19.19 0 0 0-.19.19v1.88c0 .1.09.19.19.19m-2.31-5.18h2.12a.19.19 0 0 0 .19-.19V3.83a.19.19 0 0 0-.19-.19h-2.12a.19.19 0 0 0-.19.19v1.88c0 .1.09.19.19.19m0 2.59h2.12a.19.19 0 0 0 .19-.19V6.42a.19.19 0 0 0-.19-.19h-2.12a.19.19 0 0 0-.19.19v1.88c0 .1.09.19.19.19m-2.32 0h2.12a.19.19 0 0 0 .19-.19V6.42a.19.19 0 0 0-.19-.19H9.35a.19.19 0 0 0-.19.19v1.88c0 .1.09.19.19.19m-2.31 0h2.12a.19.19 0 0 0 .19-.19V6.42a.19.19 0 0 0-.19-.19H7.04a.19.19 0 0 0-.19.19v1.88c0 .1.09.19.19.19m4.63 2.59h2.12a.19.19 0 0 0 .19-.19V9.01a.19.19 0 0 0-.19-.19H9.35a.19.19 0 0 0-.19.19v1.88c0 .1.09.19.19.19m-2.32 0h2.12a.19.19 0 0 0 .19-.19V9.01a.19.19 0 0 0-.19-.19H7.04a.19.19 0 0 0-.19.19v1.88c0 .1.09.19.19.19m-2.31 0h2.12a.19.19 0 0 0 .19-.19V9.01a.19.19 0 0 0-.19-.19H4.73a.19.19 0 0 0-.19.19v1.88c0 .1.09.19.19.19M23.4 13.6c-1.9-1.12-4.8-.63-5.89.32-.28-2.17-1.47-3.23-3.24-4.32l-.67-.44-.44.66c-.56.84-.84 1.87-.84 2.92a4.8 4.8 0 0 0 .94 2.76c-1.03.56-2.13.68-3.23.44H.08l-.02.26c-.12 1.98.19 3.86 1.03 5.58C2.08 23.24 3.68 24 5.92 24c5.93 0 10.66-2.74 13.32-7.72 1.97.04 3.91-.47 4.78-2.35l.23-.52-.85-.51z"/>
+      </svg>
+    </div>
+
+    <!-- TypeScript -->
+    <div class="skill-icon" style="left: 1050px; top: 240px; color: #3178c6; animation-delay: 4s;">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+        <rect x="3" y="3" width="18" height="18" rx="2" fill="currentColor"/>
+        <path d="M13.5 15v1.5h5V15h-1.75v-4.5h1.75V9h-5v1.5h1.75V15H13.5zM10 15v1.5H7v-1.5h1V12H7v-1.5h3V12H9v3h1zM9 9h2V7.5H9V9z" fill="#fff"/>
+      </svg>
+    </div>
+
+    <!-- Database / MongoDB -->
+    <div class="skill-icon" style="left: 180px; top: 240px; color: #47a248; animation-delay: 4.5s;">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 3C7.58 3 4 4.79 4 7v10c0 2.21 3.59 4 8 4s8-1.79 8-4V7c0-2.21-3.58-4-8-4zm6 14c0 .55-2.69 2-6 2s-6-1.45-6-2v-2.23c1.61.78 3.72 1.23 6 1.23s4.39-.45 6-1.23V17zm0-4.55c-1.3.95-3.58 1.55-6 1.55s-4.7-.6-6-1.55V9.64c1.47.83 3.61 1.36 6 1.36s4.53-.53 6-1.36v2.81zM12 9C8.69 9 6 7.55 6 7s2.69-2 6-2 6 1.45 6 2-2.69 2-6 2z"/>
+      </svg>
+    </div>
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="accent-bar"></div>
+      <div class="name">Yared Zenebe</div>
+      <div class="tagline">Computer Engineering Student</div>
+      
+      <!-- Tech skill boxes -->
+      <div class="skill-boxes">
+        <div class="skill-box python">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/>
+          </svg>
+          Python
+        </div>
+        <div class="skill-box java">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/>
+          </svg>
+          Java
+        </div>
+        <div class="skill-box cpp">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2L2 7v10l10 5 10-5V7L12 2z"/>
+          </svg>
+          C++
+        </div>
+        <div class="skill-box js">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M3 3h18v18H3V3m4.73 15.04c.4.85 1.19 1.55 2.54 1.55 1.5 0 2.53-.8 2.53-2.55v-5.78h-1.7V17c0 .86-.35 1.08-.9 1.08-.58 0-.82-.4-1.09-.87l-1.38.83m5.98-.18c.5.98 1.51 1.73 3.09 1.73 1.6 0 2.8-.83 2.8-2.36 0-1.41-.81-2.04-2.25-2.66l-.42-.18c-.73-.31-1.04-.52-1.04-1.02 0-.41.31-.73.81-.73.48 0 .8.21 1.09.73l1.31-.87c-.55-.96-1.33-1.33-2.4-1.33-1.51 0-2.48.96-2.48 2.23 0 1.38.81 2.03 2.03 2.55l.42.18c.78.34 1.24.55 1.24 1.13 0 .48-.45.83-1.15.83-.83 0-1.31-.43-1.67-1.03l-1.38.8z"/>
+          </svg>
+          JavaScript
+        </div>
+        <div class="skill-box react">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/>
+            <ellipse cx="12" cy="12" rx="8" ry="3"/>
+            <ellipse cx="12" cy="12" rx="8" ry="3" transform="rotate(60 12 12)"/>
+            <ellipse cx="12" cy="12" rx="8" ry="3" transform="rotate(120 12 12)"/>
+          </svg>
+          React
+        </div>
+        <div class="skill-box tailwind">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 6c-2.67 0-4.33 1.33-5 4 1-1.33 2.17-1.83 3.5-1.5.76.19 1.31.74 1.91 1.35.98 1 2.09 2.15 4.59 2.15 2.67 0 4.33-1.33 5-4-1 1.33-2.17 1.83-3.5 1.5-.76-.19-1.3-.74-1.91-1.35C15.61 7.15 14.5 6 12 6zm-5 6c-2.67 0-4.33 1.33-5 4 1-1.33 2.17-1.83 3.5-1.5.76.19 1.3.74 1.91 1.35C8.39 16.85 9.5 18 12 18c2.67 0 4.33-1.33 5-4-1 1.33-2.17 1.83-3.5 1.5-.76-.19-1.3-.74-1.91-1.35C10.61 13.15 9.5 12 7 12z"/>
+          </svg>
+          Tailwind CSS
+        </div>
+        <div class="skill-box django">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M11.146 0h3.924v18.166c-2.013.382-3.491.535-5.096.535-4.791 0-7.288-2.166-7.288-6.32 0-4.002 2.65-6.6 6.753-6.6.637 0 1.121.05 1.707.203zm0 9.143a3.894 3.894 0 0 0-1.325-.204c-1.988 0-3.134 1.223-3.134 3.365 0 2.09 1.096 3.236 3.109 3.236.433 0 .79-.025 1.35-.102V9.142zM21.314 6.06v9.098c0 3.134-.229 4.638-.917 5.937-.637 1.249-1.478 2.039-3.211 2.905l-3.644-1.733c1.733-.815 2.574-1.53 3.109-2.625.56-1.121.739-2.421.739-5.835V6.059h3.924zM17.39.021h3.924v4.026H17.39z"/>
+          </svg>
+          Django
+        </div>
+        <div class="skill-box multisim">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.18L19.82 9 12 12.82 4.18 9 12 4.18zM4 10.63l7 3.82v6.37L4 17V10.63zm16 0V17l-7 3.82v-6.37l7-3.82z"/>
+          </svg>
+          Multisim
+        </div>
+        <div class="skill-box matlab">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.18L19.82 9 12 12.82 4.18 9 12 4.18z"/>
+          </svg>
+          MATLAB
+        </div>
+      </div>
+      
+      <div class="tags">
+        <div class="tag">Developer</div>
+        <div class="tag">Builder</div>
+        <div class="tag">Innovator</div>
+      </div>
+    </div>
+
+    <!-- Particles (generated via JavaScript) -->
+    <div id="particles"></div>
+    <div id="binary-streams"></div>
+    <div id="floating-code"></div>
+  </div>
+
+  <script>
+    // Generate particles
+    const particlesContainer = document.getElementById('particles');
+    for (let i = 0; i < 30; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.left = Math.random() * 1280 + 'px';
+      particle.style.top = Math.random() * 320 + 'px';
+      particle.style.animationDelay = Math.random() * 20 + 's';
+      particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+      particlesContainer.appendChild(particle);
+    }
+
+    // Generate binary streams
+    const binaryContainer = document.getElementById('binary-streams');
+    const binaryChars = '01';
+    for (let i = 0; i < 8; i++) {
+      const stream = document.createElement('div');
+      stream.className = 'binary-stream';
+      stream.style.left = (i * 160 + 50) + 'px';
+      stream.style.animationDuration = (10 + Math.random() * 10) + 's';
+      stream.style.animationDelay = Math.random() * 5 + 's';
+      
+      let text = '';
+      for (let j = 0; j < 20; j++) {
+        text += binaryChars[Math.floor(Math.random() * 2)];
+      }
+      stream.textContent = text;
+      binaryContainer.appendChild(stream);
+    }
+
+    // Generate floating code symbols
+    const codeContainer = document.getElementById('floating-code');
+    const codeSymbols = ['{ }', '</>', 'fn()', 'int', 'const', 'class', '[]', '()'];
+    for (let i = 0; i < 12; i++) {
+      const code = document.createElement('div');
+      code.className = 'float-code';
+      code.style.left = Math.random() * 1200 + 'px';
+      code.style.top = Math.random() * 280 + 150 + 'px';
+      code.style.fontSize = (12 + Math.random() * 8) + 'px';
+      code.style.animationDelay = Math.random() * 10 + 's';
+      code.style.animationDuration = (10 + Math.random() * 10) + 's';
+      code.textContent = codeSymbols[Math.floor(Math.random() * codeSymbols.length)];
+      codeContainer.appendChild(code);
+    }
+  </script>
+</body>
+</html>

@@ -9,7 +9,7 @@ I'm a passionate **Computer Engineering student** with experience in **web devel
 - 🔭 Working on: **Multilingual Diabetes Risk Prediction ML system, interactive weather app**  
 - 🌍 Languages: **Python, Java, C++, JavaScript**  
 - 📫 How to reach me: **[yaredzbeth@gmail.com]**  
-- ⚡ Fun fact: **I recently completed a 5K race and love hiking adventures in the UAE!**
+- ⚡ Fun fact: **uhmm...🤔 love hiking adventures in the UAE!**
 
 ## My Skills 🧠
 

@@ -1,6 +1,6 @@
 # Hi there, I'm Yared Zenebe! 👋
 
-![Banner Image](https://images.unsplash.com/photo-1518779578993-ec3579fee39f?auto=format&fit=crop&w=1350&q=80)
+![Banner](./banner.svg)
 
 ## About Me 🚀
 

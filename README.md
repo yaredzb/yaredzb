@@ -8,8 +8,8 @@ I'm a passionate **Computer Engineering student** with experience in **web devel
 
 - 🌱 Currently learning: **Next.js, advanced front-end techniques, machine learning deployment**  
 - 🔭 Working on: **Multilingual Diabetes Risk Prediction ML system, interactive weather app**  
-- 🌍 Languages: **Python, Java, C, JavaScript, Amharic, English**  
-- 📫 How to reach me: **[your email address]**  
+- 🌍 Languages: **Python, Java, C++, JavaScript**  
+- 📫 How to reach me: **[yaredzbeth@gmail.com]**  
 - ⚡ Fun fact: **I recently completed a 5K race and love hiking adventures in the UAE!**
 
 ## My Skills 🧠
@@ -53,7 +53,7 @@ Check out the repository [here](https://github.com/YOUR_USERNAME/gamify).
 
 ## Get in Touch 📬
 
-- **[LinkedIn](https://www.linkedin.com/in/yared-zewde/https://www.linkedin.com/in/yared-zewde/)**  
+- **[LinkedIn](https://www.linkedin.com/in/yared-zewde/)**  
 - **[Portfolio Website](https://YOUR_PORTFOLIO_LINK)**  
 - **Email:** [your_email@example.com](mailto:yaredzbeth@gmail.com)
 

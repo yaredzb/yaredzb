@@ -1,3 +1,4 @@
+![Banner](./banner.svg)
 # Hi there, I'm Yared Zenebe! 👋
 
 ![Banner](./banner.svg)

@@ -42,13 +42,14 @@ Check out the repository [here](https://github.com/YOUR_USERNAME/weather-app).
 It predicts early-stage diabetes risk and demonstrates my skills in **data preprocessing, model training, and web deployment**.  
 Check out the repository [here](https://github.com/YOUR_USERNAME/diabetes-ml).
 
-### [Security System Circuit](https://github.com/YOUR_USERNAME/security-system)
+### [Gamify](https://github.com/YOUR_USERNAME/gamify)
 
-![Security System Screenshot](https://images.unsplash.com/photo-1581092330971-d2f147ff0f3d?auto=format&fit=crop&w=800&q=80)
+![Gamify Screenshot](https://images.unsplash.com/photo-1600566752267-7f9fcabf3d9b?auto=format&fit=crop&w=800&q=80)
 
-**Security System Circuit** is a **sequential logic circuit** designed in **Multisim**, using JK flip-flops and counters.  
-It features password entry, reset sequences, and timed lockout functions to enhance security.  
-Check out the repository [here](https://github.com/YOUR_USERNAME/security-system).
+**Gamify** is an interactive web application designed to **make learning and daily tasks engaging through gamification**.  
+It’s built with **React, Tailwind CSS, and JSON-server backend**, featuring dynamic dashboards, rewards, and progress tracking.  
+This project demonstrates my skills in **front-end development, state management, and building interactive UIs**.  
+Check out the repository [here](https://github.com/YOUR_USERNAME/gamify).
 
 ## Get in Touch 📬
 

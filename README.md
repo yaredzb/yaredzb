@@ -28,7 +28,7 @@
 ---
 
 ## 📫 Connect with Me
-[LinkedIn](www.linkedin.com/in/yared-zewde) • [Portfolio Website](https://YOUR_PORTFOLIO_LINK) • [Email](mailto:yaredzbeth@gmail.com)
+[LinkedIn](https://www.linkedin.com/in/yared-zewde/) • [Portfolio Website](https://YOUR_PORTFOLIO_LINK) • [Email](mailto:yaredzbeth@gmail.com)
 
 ---
 

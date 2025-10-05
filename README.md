@@ -1,7 +1,7 @@
 ![Banner](./banner.svg)
 # Hi there, I'm Yared Zenebe! 👋
 
-## About Me 🚀
+## About Me 🧑‍💻
 
 I'm a passionate **Computer Engineering student** with experience in **web development, machine learning, and digital circuit design**. I enjoy tackling complex problems, learning new skills, and building projects that merge creativity and logic.
 
